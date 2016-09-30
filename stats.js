@@ -76,7 +76,7 @@ lr.on('end', function() {
     average.timetoAck /= datalist.length;
     average.timetoRecieve /= datalist.length;
 
-    console.log('min', min);
-    console.log('max', min);
-    console.log('average', min);
+    console.log('min', JSON.stringify(min));
+    console.log('max', JSON.stringify(max));
+    console.log('average', JSON.stringify(average));
 })
