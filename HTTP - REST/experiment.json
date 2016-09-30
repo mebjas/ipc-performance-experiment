@@ -1,0 +1,17 @@
+{
+    "title": "Experiment to test performance of HTTP",
+    "pre_test": "npm install",
+    "post_test": "",
+    "test": {
+        "producer": {
+            "format": "<executable> port payload_path log_path timeout",
+            "start": "node producer.js 8989 ../payload ./log 5000",
+            "port": 8989
+        },
+        "consumer": {
+            "format": "<executable>  port log_path timeout",
+            "start": "node consumer.js 8990 ./log 5000",
+            "port": 8990                        
+        }
+    }
+}
