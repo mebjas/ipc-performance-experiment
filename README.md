@@ -4,7 +4,7 @@ An experiment to evaluate performance of various IPC protocols, message formats 
 Things to test
  - [ ] HTTP - REST
      - [ ] text
-          - [ ] JSON
+          - [x] JSON
           - [ ] XML
      - [ ] binary
           - [ ] MessagePack
@@ -21,3 +21,17 @@ Things to test
  - **Min Max time**
  - **Memory consumption** (not sure)
  - **Processor Usage** (not sure)
+
+# Result So far (in ms)
+**HTTP-REST TEXT JSON**
+Test was done in local setup. With following configuration:
+**Processor**: `Inter(R) Xeon(R) CPU E5-1650 v3 @ 3.5GHz`
+**RAM**: `32GB`
+**OS**: `Windows 10`
+
+Result
+```json
+min {"timetoRecieve":1,"timetoAck":4,"rttTime":6}
+max {"timetoRecieve":57,"timetoAck":38,"rttTime":74}
+average {"timetoRecieve":4.502,"timetoAck":12.669,"rttTime":17.171}
+```
