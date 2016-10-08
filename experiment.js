@@ -12,9 +12,15 @@ app.use(bodyParser.urlencoded({      // to support URL-encoded bodies
 
 var experimentPath = process.argv[2];
 var experiment = require([__dirname, experimentPath, 'experiment.json'].join('\\'));
+var childProcess = require('child_process');
 
-var childProcess = require('child_process'),
-     ls1, ls2;
+var ItemsToComplete = 2, ItemsCompleted = 0, Complete = function() {
+    ItemsCompleted++;
+    if (ItemsCompleted == ItemsToComplete) {
+        console.log(sprintf("Things complete, starting stats engine... "))
+        exec(sprintf("node stats.js"));
+    }
+}
 
 console.log("Spawning producer ...");
 exec(sprintf('cd "%s" && %s', experimentPath, experiment.test.producer.start), function (error, stdout, stderr) {
@@ -37,3 +43,8 @@ setTimeout(function() {
         console.log(body);
     })
 }, 5000);
+
+
+var Complete = function() {
+
+}

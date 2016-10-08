@@ -19,27 +19,31 @@ var port = process.argv[2];
 var log_path = [__dirname,process.argv[3]].join('\\');
 var timeout = parseInt(process.argv[4]);
 
-function log(message, res) {
+function log(index, message, res, toConsole) {
+    if (toConsole) console.log(message);
     fs.appendFile(log_path, [new Date().getTime(), message].join(' ') +os.EOL, null, 'utf8', function() {
-        if (res != undefined) res.json({ack: true, time: new Date().getTime()});    
+        if (res != undefined) res.json({index: index, ack: true, time: new Date().getTime()});    
     });
 }
 
 app.listen(port, function() {
-    log(sprintf("[ignore] consumer listening to port %s", port));
+    log(-1, sprintf("[ignore] consumer listening to port %s", port), undefined, true);
 });
 
 app.post('/listen', function(req, res) {
     var index = req.body.index;
-    log(["CONSUMER", "RECV", index].join(' '), res);    
+    log(index, ["CONSUMER", "RECV", index].join(' '), res);    
 });
 
 app.get('/listen', function(req, res) {
     var index = req.query.index;
-    log(["CONSUMER", "RECV", index].join(' '), res);
+    log(index, ["CONSUMER", "RECV", index].join(' '), res);
 });
 
 app.get('/exit', function(req, res) {
-    log("[ignore] consumer exiting");
-    process.exit(0);
+    log(-1, "[ignore] consumer exiting", undefined, true);
+    res.json({ack: true, message: sprintf("PROCESS WILL EXIT IN %sms", 500)});
+    setTimeout(function() {
+        process.exit(0);
+    }, 500);
 });
