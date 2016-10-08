@@ -61,17 +61,20 @@ lr.on('end', function() {
     datalist.forEach(function(dl) {
         if (dl.timetoRecieve > max.timetoRecieve) max.timetoRecieve = dl.timetoRecieve;
         if (dl.timetoRecieve < min.timetoRecieve) min.timetoRecieve = dl.timetoRecieve;
-        average.timetoRecieve += dl.timetoRecieve;
 
         if (dl.timetoAck > max.timetoAck) max.timetoAck = dl.timetoAck;
         if (dl.timetoAck < min.timetoAck) min.timetoAck = dl.timetoAck;
-        average.timetoAck += dl.timetoAck;
 
         if (dl.rttTime > max.rttTime) max.rttTime = dl.rttTime;
         if (dl.rttTime < min.rttTime) min.rttTime = dl.rttTime;
-        average.rttTime += dl.rttTime;
+
+        average.timetoRecieve += dl.timetoRecieve;
+        average.timetoAck += (isNaN(dl.timetoAck)) ? 0 : dl.timetoAck;
+        average.rttTime += (isNaN(dl.rttTime)) ? 0 : dl.rttTime;
+        // console.log(average);
     });
 
+    console.log(average);
     average.rttTime /= datalist.length;
     average.timetoAck /= datalist.length;
     average.timetoRecieve /= datalist.length;
@@ -79,4 +82,12 @@ lr.on('end', function() {
     console.log('min', JSON.stringify(min));
     console.log('max', JSON.stringify(max));
     console.log('average', JSON.stringify(average));
+
+    var data = {
+        min: min,
+        max: max,
+        average: average
+    }
+
+    fs.writeFileSync('./stats.json', JSON.stringify(data));
 })

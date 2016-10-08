@@ -1,0 +1,32 @@
+{
+  "name": "ipc-performance-experiment",
+  "version": "1.0.0",
+  "description": "An experiment to evaluate performance of various IPC protocols, message formats &amp; tools.",
+  "main": "experiment.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "concurrently": "^2.2.0",
+    "express": "^4.14.0",
+    "freeport": "^1.0.5",
+    "line-by-line": "^0.1.5",
+    "natural": "^0.4.0",
+    "octonode": "^0.7.6",
+    "portfinder": "^1.0.7",
+    "request": "^2.75.0",
+    "sprintf": "^0.1.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mebjas/ipc-performance-experiment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mebjas/ipc-performance-experiment/issues"
+  },
+  "homepage": "https://github.com/mebjas/ipc-performance-experiment#readme"
+}
