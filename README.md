@@ -31,7 +31,9 @@ Test was done in local setup. With following configuration:
 
 Result
 ```json
-min {"timetoRecieve":1,"timetoAck":4,"rttTime":6}
-max {"timetoRecieve":57,"timetoAck":38,"rttTime":74}
-average {"timetoRecieve":4.502,"timetoAck":12.669,"rttTime":17.171}
+{
+    "min" : {"timetoRecieve":175,"timetoAck":56,"rttTime":304},
+    "max" : {"timetoRecieve":292,"timetoAck":241,"rttTime":488},
+    "average" : {"timetoRecieve":234.125,"timetoAck":131.681,"rttTime":363.142}
+}
 ```
