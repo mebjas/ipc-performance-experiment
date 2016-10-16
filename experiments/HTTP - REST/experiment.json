@@ -1,0 +1,18 @@
+{
+    "title": "Experiment to test performance of HTTP",
+    "pre_test": "npm install",
+    "post_test": "",
+    "name": "HTTP - REST",
+    "test": {
+        "producer": {
+            "start": "node \"./experiments/HTTP - REST/producer.js\"",
+            "port": 8989,
+            "timeout": 5000
+        },
+        "consumer": {
+            "start": "node \"./experiments/HTTP - REST/consumer.js\"",
+            "port": 8990,
+            "timeout": 5000
+        }
+    }
+}
